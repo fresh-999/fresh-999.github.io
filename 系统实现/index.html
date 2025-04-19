@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>系统实现 | 项目名</title><meta name="author"><meta name="copyright"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据获取及预处理为全面分析当前公众对“生育价值观”的多元态度与情绪表达，我们综合采集了社交媒体平台与权威新闻平台中舆情讨论、官媒报道等文本数据。主要数据来源包括：(1)	微博平台用户讨论：以“生育焦虑”“不想生”“三孩政策”等关键词为核心，采集用户发布的评论、动态、转发等文本内容，数据总量超过3000条，内容较为口语化，反映公众真实表达；(2)	央视网报道内容：采集央视网平台关于“人口政策”“生育">
+<meta property="og:type" content="website">
+<meta property="og:title" content="系统实现">
+<meta property="og:url" content="https://fresh-999.github.io/%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="项目名">
+<meta property="og:description" content="数据获取及预处理为全面分析当前公众对“生育价值观”的多元态度与情绪表达，我们综合采集了社交媒体平台与权威新闻平台中舆情讨论、官媒报道等文本数据。主要数据来源包括：(1)	微博平台用户讨论：以“生育焦虑”“不想生”“三孩政策”等关键词为核心，采集用户发布的评论、动态、转发等文本内容，数据总量超过3000条，内容较为口语化，反映公众真实表达；(2)	央视网报道内容：采集央视网平台关于“人口政策”“生育">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fresh-999.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-04-19T13:28:53.000Z">
+<meta property="article:modified_time" content="2025-04-19T14:22:23.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fresh-999.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/butterfly-icon.png"><link rel="canonical" href="https://fresh-999.github.io/%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '系统实现',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/%E4%BD%9C%E5%93%81%E6%A6%82%E8%BF%B0"><span> 作品概述</span></a></div><div class="menus_item"><a class="site-page" href="/%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span> 问题分析</span></a></div><div class="menus_item"><a class="site-page" href="/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span> 技术方案</span></a></div><div class="menus_item"><a class="site-page" href="/%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0"><span> 系统实现</span></a></div><div class="menus_item"><a class="site-page" href="/%E5%AE%9E%E8%AF%81%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%A8%E8%AE%BA"><span> 实证分析与讨论</span></a></div><div class="menus_item"><a class="site-page" href="/%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span> 总结与展望</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/img/junjun.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">项目名</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/%E4%BD%9C%E5%93%81%E6%A6%82%E8%BF%B0"><span> 作品概述</span></a></div><div class="menus_item"><a class="site-page" href="/%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span> 问题分析</span></a></div><div class="menus_item"><a class="site-page" href="/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88"><span> 技术方案</span></a></div><div class="menus_item"><a class="site-page" href="/%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0"><span> 系统实现</span></a></div><div class="menus_item"><a class="site-page" href="/%E5%AE%9E%E8%AF%81%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%A8%E8%AE%BA"><span> 实证分析与讨论</span></a></div><div class="menus_item"><a class="site-page" href="/%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span> 总结与展望</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">系统实现</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h3 id="数据获取及预处理"><a href="#数据获取及预处理" class="headerlink" title="数据获取及预处理"></a>数据获取及预处理</h3><p>为全面分析当前公众对“生育价值观”的多元态度与情绪表达，我们综合采集了社交媒体平台与权威新闻平台中舆情讨论、官媒报道等文本数据。<br>主要数据来源包括：<br>(1)	微博平台用户讨论：以“生育焦虑”“不想生”“三孩政策”等关键词为核心，采集用户发布的评论、动态、转发等文本内容，数据总量超过3000条，内容较为口语化，反映公众真实表达；<br>(2)	央视网报道内容：采集央视网平台关于“人口政策”“生育观念”等话题的官方报道，共计900余条，内容权威正式，可作为社会主流意见的参考。<br>本研究借助八爪鱼采集器对数据进行获取。八爪鱼采集器是一款热门的数据获取工具，其通过模拟用户浏览网页的操作逻辑，借助可视化的页面交互方式生成自动化的数据抓取流程。最终获取的数据可灵活存储于Excel表格等多种载体，为后续的数据分析提供高效的数据支撑。以下是八爪鱼采集器爬取的核心关键词：<br><img src="/%5Cpics%5Cchap4-1.png" alt="采集器获取相关内容"><br>爬取到的文本数据示例如下：<br><img src="/%5Cpics%5Cchap4-2.png" alt="爬虫采集到的部分数据展示"><br>通过爬虫采集到的文本数据属于非结构化文本，包含多种无效、冗余信息，直接用于建模分析不仅会降低模型性能，还可能带来数据偏差。因此，在正式提取文本特征之前，需对原始数据进行系统化的清洗与标准化处理。结合数据特点，本文主要采取如下处理措施：<br>（1）去除特殊字符和标点符号：部分评论中夹杂有大量emoji表情符号、网址链接、英文字符以及无意义的标点，这些信息本身不具有分析价值，对这些符号分析反而会影响处理时间及整体质量甚至会干扰文本切分与模型训练，因此，通过统一删除文本数据中的特殊字符等符号，仅保留中文字符，提升文本的纯净度。<br>（2）清除空行、空字符串等：这类无意义的文本数据不含有效语义信息，直接对这些文本数据进行语义信息处理则会降低整体质量，造成一些不必要的消极后果。若直接输入分析模型，可能对整体准确率与表达效果造成负面影响，故需对这类的非结构化信息进行过滤操作，直接删除空信息以及无意义的评论信息，提高非结构化文本的语义信息含量。<br>（3）剔除停用词：在保留中文字符后，进一步识别并去除无实际语义贡献的停用词。这类词汇虽语法上常见，但对情感分析、主题提取等任务无实质帮助，剔除后可减少冗余信息，使文本核心语义更突出，降低无效数据对模型训练与分析的干扰，提升整体处理效率与精度。<br>在进行上述处理后，通过词频计算查看清洗效果。这些词汇在一定程度上体现了当下公众在生育议题上的关注焦点，为后续LDA主题建模提供了扎实语料支撑。下图展示了关于生育舆情的前20个话题高频讨论热词：<br><img src="/%5Cpics%5Cchap4-3.png" alt="生育舆情前20个高频讨论热词"><br>文本特征提取<br>在自然语言处理任务中，将文本数据转换为数值型数据的过程需要对文本内容进行向量化处理，以便进行特征提取。这一步骤对后续分类模型的训练结果和整体分类准确性起到至关性的重要作用。<br>向量化的方法主要可以分为两种：一种是传统机器学习方法，常见的包括 TF-IDF 模型和词袋模型；另一种是基于神经网络的方法，其中最典型的是词向量模型。这些方法在处理文本数据时各有特点，选择合适的方法可以对模型的性能产生重要影响。我们采用 TF-IDF 方法来提取文本特征，在文本特征计算前，需要对原始文本进行标准化处理与中文分词。<br>对评论文本进行分词和统计词频是自然语言处理中非常重要的一步，分词的质量直接影响到接下来所操作数据的质量。我们基于清洗后的文本，使用 jieba 分词工具对每条评论进行词语切分。<br>作为 Python 环境下的中文分词工具，jieba 分词器集成了停用词库，可将原本杂乱无章、缺乏明确结构的非结构化中文文本精准切分为具有语义完整性的词语单元，其在自然语言处理领域应用广泛，为后续的文本数据分析提供标准化的基础语料，确保分析过程能够基于标准化、规范化的基础语料顺利推进。<br>分词效果如下表所示：</p>
+<h3 id="文本特征提取"><a href="#文本特征提取" class="headerlink" title="文本特征提取"></a>文本特征提取</h3><p>在自然语言处理任务中，将文本数据转换为数值型数据的过程需要对文本内容进行向量化处理，以便进行特征提取。这一步骤对后续分类模型的训练结果和整体分类准确性起到至关性的重要作用。<br>向量化的方法主要可以分为两种：一种是传统机器学习方法，常见的包括 TF-IDF 模型和词袋模型；另一种是基于神经网络的方法，其中最典型的是词向量模型。这些方法在处理文本数据时各有特点，选择合适的方法可以对模型的性能产生重要影响。我们采用 TF-IDF 方法来提取文本特征，在文本特征计算前，需要对原始文本进行标准化处理与中文分词。<br>对评论文本进行分词和统计词频是自然语言处理中非常重要的一步，分词的质量直接影响到接下来所操作数据的质量。我们基于清洗后的文本，使用 jieba 分词工具对每条评论进行词语切分。<br>作为 Python 环境下的中文分词工具，jieba 分词器集成了停用词库，可将原本杂乱无章、缺乏明确结构的非结构化中文文本精准切分为具有语义完整性的词语单元，其在自然语言处理领域应用广泛，为后续的文本数据分析提供标准化的基础语料，确保分析过程能够基于标准化、规范化的基础语料顺利推进。<br>分词效果如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">原评论文本</th>
+<th align="center">经分词</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">呼和浩特生育三孩发万如果有补助拿你的生育意愿会提高吗</td>
+<td align="center">呼和浩特 生育 三孩发 补助 生育 意愿 提高</td>
+</tr>
+<tr>
+<td align="center">吃饭隔壁桌一直在聊育儿补习班我的妈呀给我干饭都干自闭了果然还是不要生小孩了</td>
+<td align="center">吃饭 隔壁 育儿 补习班 妈呀 干饭 自闭 不要 生小孩</td>
+</tr>
+<tr>
+<td align="center">妻子不愿继续生育离婚后获补偿万婚姻中生育责任需基于平等协商任何一方都不能强制</td>
+<td align="center">妻子 不愿 继续 生育 离婚 补偿 婚姻 生育 责任 基于 平等 协商 任何一方 不能 强制</td>
+</tr>
+<tr>
+<td align="center">生育不是人生的必选项而是每个人的自由选择每个人自己的生育意愿都应该被尊重</td>
+<td align="center">生育 不是 人生 选项 每个 自由选择 每个 生育 意愿 应该 尊重</td>
+</tr>
+<tr>
+<td align="center">现在补贴生娃的政策开始计划有了补贴你们愿意生二胎三胎吗</td>
+<td align="center">现在 补贴 生娃 政策 计划 补贴 愿意 生二胎 三胎</td>
+</tr>
+</tbody></table>
+<p>处理后的词语序列为后续的词频统计与TF-IDF计算奠定了基础。TF-IDF是一种常用的文本特征提取方法，其核心思想是衡量一个词语在某一文本中出现的重要程度。TF表示词在当前语料中出现的频率；IDF表示词语在整个语料中的稀有程度。TF-IDF值越高，说明该词对文本的区分能力越强。我们通过Python手动实现了TF、IDF以及TF-IDF的计算过程。<br>首先，统计所有词语在评论文本中的出现次数并计算词频；其次，基于语料总词数与该词的出现次数计算IDF值；最后，将TF与IDF相乘得到每个词的TF-IDF权重。计算结果按值从高到低排序后，输出前若干高权重关键词作为文本的重要特征。<br>为进一步识别评论文本中最具代表性的关键词，本文对计算所得的TF-IDF结果按权重值由高到低进行排序，并提取排名前十的高权重词语。结果如下表所示，高频关键词包括“政策”“补贴”“计划生育”“保险”“家庭”“人口”“实施”“支持”等。这些关键词集中体现了公众在生育话题中对于宏观政策、经济激励与社会保障的高度关注，反映了当前社会舆论围绕“生育价值”所聚焦的核心议题，具有较强的主题归属感与语义区分度。特别是“补贴”“保险”“支持”等词汇的高权重，进一步突出了民众对于育儿经济成本、政策引导作用以及国家支持机制的关注焦点。</p>
+<table>
+<thead>
+<tr>
+<th align="center">词语</th>
+<th align="center">TF-IDF值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">政策</td>
+<td align="center">0.07519808586039405</td>
+</tr>
+<tr>
+<td align="center">补贴</td>
+<td align="center">0.0684419384586193</td>
+</tr>
+<tr>
+<td align="center">计划生育</td>
+<td align="center">0.05414557815412688</td>
+</tr>
+<tr>
+<td align="center">保险</td>
+<td align="center">0.04997678597142944</td>
+</tr>
+<tr>
+<td align="center">家庭</td>
+<td align="center">0.04415393016914829</td>
+</tr>
+<tr>
+<td align="center">人口</td>
+<td align="center">0.03947289878119528</td>
+</tr>
+<tr>
+<td align="center">服务</td>
+<td align="center">0.033300645034093024</td>
+</tr>
+<tr>
+<td align="center">实施</td>
+<td align="center">0.030270569853447858</td>
+</tr>
+<tr>
+<td align="center">支持</td>
+<td align="center">0.026947809564017922</td>
+</tr>
+</tbody></table>
+<h3 id="基于支持向量机-SVM-的文本情感分析"><a href="#基于支持向量机-SVM-的文本情感分析" class="headerlink" title="基于支持向量机 SVM 的文本情感分析"></a>基于支持向量机 SVM 的文本情感分析</h3><p>为进一步刻画公众在“生育价值观”议题下的情绪表达倾向，本文在完成数据清洗与分词的基础上，基于情感得分标签引入支持向量机（SVM）模型，对评论文本进行情感分类建模，并通过可视化手段展示情感得分的分布趋势。<br>首先，采用 SnowNLP 工具对每条评论文本进行情感分析，生成情感得分（范围为0至1），并据此划分情感类别：得分大于0.6标记为“积极”，小于0.4标记为“消极”，其余为“中性”。随后使用sklearn库将数据集划分为训练集与测试集，并基于 TfidfVectorizer 提取文本特征，构建线性核的 SVM 模型进行训练。在完成模型训练后，使用测试集数据对模型效果进行验证。<br>结果显示，SVM 模型在三分类任务中具备良好的分类精度，特别是在识别“积极情感”方面表现优越，模型整体 F1 值较高，说明其在“生育”相关舆情中的情绪判别任务中具有较强适用性。SVM 模型在测试集上的分类准确率为 85.2%，在积极类别上的 F1 值达 0.87，说明模型在情绪识别中的鲁棒性良好。下表展示了两平台情绪分布比较：</p>
+<table>
+<thead>
+<tr>
+<th align="center">平台</th>
+<th>积极情绪</th>
+<th>中性情绪</th>
+<th>消极情绪</th>
+<th>密度峰值区间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">微博</td>
+<td>约  73%</td>
+<td>约  12%</td>
+<td>约  15%</td>
+<td>0.90 附近</td>
+</tr>
+<tr>
+<td align="center">央视网</td>
+<td>约  65%</td>
+<td>约  28%</td>
+<td>约  7%</td>
+<td>0.75 附近</td>
+</tr>
+</tbody></table>
+<p>下图是不同平台影评的情感预测结果可视化：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="/pics/chap4-4.png" alt="微博评论情感分析"></th>
+<th align="center"><img src="/%5Cpics%5Cchap4-5.png" alt="央视评论情感分析"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">微博评论情感分析</td>
+<td align="center">央视评论情感分析</td>
+</tr>
+</tbody></table>
+<p>在情绪柱状分布图中可以看出，微博评论中积极情感占比显著，超过70%，而消极情绪评论所占比例相对较高，接近15%。相比之下，央视评论中“积极评论”比例略低于微博，但“中性评论”明显增多，积极评论约占65%，中性评论升至28%，消极评论降至约7%。可见，央视平台上的用户情绪表达更趋于理性、克制，少有极端观点出现。微博平台情绪表达更为直接和极化，而央视评论更趋理性与中性。<br>为更直观分析公众对“生育”议题的情感分布趋势，本文绘制了评论情感得分的散点图与密度分布图，如下图所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="/pics/chap4-6.png" alt="微博评论情感得分散点图"></th>
+<th align="center"><img src="/pics/chap4-7.png" alt="央视评论情感得分散点图"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">微博评论情感得分散点图</td>
+<td align="center">央视评论情感得分散点图</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="/pics/chap4-8.png" alt="微博评论情感得分密度图"></th>
+<th align="center"><img src="/pics/chap4-9.png" alt="央视评论情感得分密度图"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">微博评论情感得分密度图</td>
+<td align="center">央视评论情感得分密度图</td>
+</tr>
+</tbody></table>
+<p>从散点图可以看出，微博评论中的积极情绪分布密度更高，得分大多集中在 0.8-1.0 区间内，形成明显的红色聚集区域。中性情绪点主要分布在0.5附近，反映出一部分用户持政策观望态度或中性陈述。消极评论在微博中也具有一定分布密度，主要集中于“生育焦虑”“职场压力”等议题。而在央视散点图中，评论整体分布更加均匀，中性评论点相对密集，消极情绪点较少，红色点虽分布广但聚类程度不如微博明显。<br>密度分布图进一步反映了上述差异。微博情感得分密度在0.9附近达到峰值，说明大量评论情绪正面，带有鼓励、赞同的倾向。而央视评论的密度曲线更加平缓，密度高点集中在0.7-0.8之间，反映了用户表达中等情感倾向较为普遍，体现出理性讨论主导的评论氛围。<br>综上所述，通过对微博与央视评论的情绪得分分布趋势对比，可以发现两者均以积极情感为主，但微博评论具有更强烈的情绪表达特征，积极与消极评论之间差异显著；而央视评论则更倾向于中性和理性表达，平台差异在舆论生成机制和用户群体特征方面表现出显著影响。这种对比不仅揭示了平台舆情生态的异构性，也为情绪识别模型的泛化与适应性提供了实证支持。</p>
+<h3 id="基于词云图可视化分析"><a href="#基于词云图可视化分析" class="headerlink" title="基于词云图可视化分析"></a>基于词云图可视化分析</h3><p>词云图是一种直观的数据可视化工具，能够展示在电影评论中出现频率较高 的词语。在词云图中，词语的大小和字体颜色通常与其在评论中的出现频率相关联，频率越高的词语在图中就越大、越显眼。因此，词云图能够生动地呈现出受关注程度较高的主题或关键词，同时反映了大多数人对于生育话题的情感评价。</p>
+<p><img src="/%5Cpics%5Cchap4-10.png" alt="微博生育舆情词云图"></p>
+<p>通过对微博平台3000余条评论进行分词与停用词过滤后绘制的词云图显示，“生育”“不想生”“焦虑”“三孩政策”“女性”“职场”“压力”“成本”等词汇出现频率显著。这些关键词集中反映了用户对生育政策的感知与现实考量，负面词如“焦虑”“压力”频繁出现，说明生育成本、职场不平等等问题是舆论表达中的核心关注点。</p>
+<p><img src="/%5Cpics%5Cchap4-11.png" alt="央视网生育话题词云图"></p>
+<p>相较微博，央视评论词云图中出现频率较高的词包括“政策”“支持”“保障”“人口”“发展”“国家”“家庭”等，整体用词更为宏观与官方。这说明央视平台评论中用户更关注政策方向与国家发展层面，对“三孩”“育儿补贴”等话题关注度高，但缺少“情绪性”词汇，反映出理性、理智的舆论风格。<br>从两张词云图可以看出，微博评论更富有个人情绪与现实困境表达，反映个体视角；而央视评论更偏向政策语言和宏观叙述，代表官方舆论引导或社会认同。微博用户多关注“职场影响”“成本负担”等具体压力，而央视评论中“支持”“家庭”“国家”词频居前，显示出更高层级的舆论氛围。<br>词云图不仅帮助我们快速识别公众关注的主题词，更可作为后续情绪建模和主题提取（LDA）工作的语义基础，为深入探究公众“生育价值观”的情绪结构和议题偏好提供可视化支持。</p>
+<h3 id="基于LDA-主题模型分析"><a href="#基于LDA-主题模型分析" class="headerlink" title="基于LDA 主题模型分析"></a>基于LDA 主题模型分析</h3><p>LDA是一种无监督学习的概率主题模型，用于从大量文档集合中发现隐含的主题结构。为了能更进一步地挖掘舆情关于生育意愿的讨论聚焦点，在词云图可视化分析的基础上，本文更进一步地对数据进行LDA主题分析，实现对关键信息更加准确的挖掘。下面对生育舆情进行LDA主题分析：</p>
+<p><img src="/%5Cpics%5Cchap4-12.png" alt="生育舆情主题数为3时的LDA可视化展示"></p>
+<p>如上图所示的LDAvis可视化界面中：左侧区域的每个圆形节点对应划分的不同主题，主题之间的界限划分越明晰，节点间距越远表明主题间差异越大，意味着模型的整体表现越好。圆形节点大小反映主题在语料中的概率权重。右侧区域展示对应主题下的前三十个高频词。当未选中任何主题时，右侧的关键词条形图仅以蓝色进行可视化呈现，此时该区域反映的是全局语料的关键词频率分布。若选中某个具体主题，关键词条形图会在蓝色上叠加红色显示，红色部分就代表该关键词在所选主题中的频率情况。<br>此外还可以对参数λ进行调节，它的调节并无固定规则，通过多次调试直至获得主题关键词区分度最佳的效果为止。这种交互式调整机制为我们提供了清晰的展示效果。</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">主题1</th>
+<th>主题2</th>
+<th>主题3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">消费</td>
+<td>孩子</td>
+<td>生育</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">补贴</td>
+<td>生育</td>
+<td>人口</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">生育</td>
+<td>家庭</td>
+<td>孩子</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">政策</td>
+<td>补贴</td>
+<td>离婚</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">育儿</td>
+<td>女性</td>
+<td>出生</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">服务</td>
+<td>育儿</td>
+<td>广东</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">支持</td>
+<td>生活</td>
+<td>万人</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">提振</td>
+<td>结婚</td>
+<td>奖励</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">发展</td>
+<td>工作</td>
+<td>儿子</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">方案</td>
+<td>生育率</td>
+<td>生娃</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">市场</td>
+<td>父母</td>
+<td>社区</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">家庭</td>
+<td>经济</td>
+<td>经济</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">经济</td>
+<td>婚姻</td>
+<td>女性</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">健康</td>
+<td>妈妈</td>
+<td>意愿</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">发放</td>
+<td>成本</td>
+<td>子宫</td>
+</tr>
+</tbody></table>
+<p>上表为关于生育舆情的LDA主题提取结果，主题数为3，每个主题保留了15个频率较高的词语。<br>主题一的特征词反映了舆论对生育政策与经济支持等措施的关注，其中出现了“消费”“补贴”“政策”“支持”等核心关键词。该主题聚焦于政府或社会层面针对生育的政策设计与经济支持手段，讨论核心是通过政策（如生育相关消费补贴、生育福利等）提高对生育的经济支持，同时完善生育配套支持措施，对生育意愿提升起积极作用。<br>主题二的特征词聚焦于女性生育成本，关键词有“家庭”“女性”“工作”“经济”，核心是揭示女性生育需要承担的独特成本，涉及经济支出、职业发展、家庭角色责任等多重维度，反映出社会对女性在生育过程中面临的经济压力、职业发展障碍等问题的关注。<br>主题三的特征词反映了舆论对婚姻政策的关注，其中出现了“孩子”“离婚”“意愿”等关键词。当离婚程序复杂时，个体可能因对婚姻风险的担忧而推迟结婚，甚至放弃婚姻，形成“离婚难→结婚率低→生育意愿下降”的传导链条。关键词“人口”则体现了这一传导机制的宏观结果，凸显婚姻政策对生育意愿的重要影响。<br>在完成对生育舆情的LDA主题模型构建基础上，同样对央视网关于生育的报道进行LDA主题分析：</p>
+<p><img src="/%5Cpics%5Cchap4-13.png"></p>
+<p>在建立LDA主题模型之后，我们把每个主题对应的前15个频率较高的词语汇聚成表格，方便对每个主题进行逐一分析。表格如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">主题1</th>
+<th>主题2</th>
+<th>主题3</th>
+<th>主题4</th>
+<th>主题5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">生育</td>
+<td>生育</td>
+<td>生育</td>
+<td>生育</td>
+<td>生育</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">补贴</td>
+<td>政策</td>
+<td>补贴</td>
+<td>生育率</td>
+<td>政策</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">计划生育</td>
+<td>人口</td>
+<td>家庭</td>
+<td>政策</td>
+<td>服务</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">家庭</td>
+<td>计划生育</td>
+<td>育儿</td>
+<td>人口</td>
+<td>补贴</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">待遇</td>
+<td>实施</td>
+<td>住房</td>
+<td>计划生育</td>
+<td>支持</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">津贴</td>
+<td>发展</td>
+<td>发放</td>
+<td>总和</td>
+<td>制度</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">政策</td>
+<td>调整</td>
+<td>二孩</td>
+<td>下降</td>
+<td>完善</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">子女</td>
+<td>孩子</td>
+<td>国家</td>
+<td>女性</td>
+<td>建立</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">人口</td>
+<td>完善</td>
+<td>三孩</td>
+<td>补贴</td>
+<td>家庭</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">职工</td>
+<td>补贴</td>
+<td>企业</td>
+<td>国家</td>
+<td>教育</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">医疗</td>
+<td>措施</td>
+<td>基数</td>
+<td>水平</td>
+<td>养育</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">参保</td>
+<td>优化</td>
+<td>给予</td>
+<td>显示</td>
+<td>体系</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">发放</td>
+<td>长期</td>
+<td>产假</td>
+<td>出台</td>
+<td>保障</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">费用</td>
+<td>均衡</td>
+<td>公积金</td>
+<td>出生</td>
+<td>育儿</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">享受</td>
+<td>二孩</td>
+<td>政策</td>
+<td>时间</td>
+<td>措施</td>
+</tr>
+</tbody></table>
+<p>主题一聚焦于“生育”“补贴”“政策”“家庭”等，反映出政府对生育领域经济支持的高度关注。政府可以通过提高生育补贴、育儿津贴等经济手段，减轻家庭生育经济负担，缓解当下家庭生育养育成本过重的难题。<br>主题二的关键词包括“人口”“调整”“优化”“均衡”等，体现出政府致力于实现人口长期均衡发展的战略导向，力求推动生育政策与经济社会发展相互适配，进而优化人口结构，达成人口长期均衡发展的战略目标。<br>主题三包含“住房”“企业”“产假”“公积金”等关键词，反映出政府通过实施购房或租房补贴，引导企业落实产假制度，推动生育政策与住房保障等民生领域的深度衔接，提升家庭生育意愿与养育能力。<br>主题四聚焦于特征词“生育率”“总和”“下降”“水平”等，体现了政府对低生育率问题、低生育意愿现状的重点关注。<br>主题五涵盖了“完善”“教育”“保障”“育儿”等，体现政府着力破解“育孩难、教育贵”的痛点问题，旨在减轻家庭养育过程中的教育成本与精力负担，从而减轻教育成本对生育意愿的抑制作用。<br>综上所述，对于LDA主题模型的分析结果可以得出以下结论：<br>(1)	公众舆情聚焦生育个体痛点：讨论围绕生育政策的经济支持（如补贴、配套服务）、女性生育面临的多维成本（如职业发展等），以及婚姻政策对生育意愿的传导影响，反映出个体对生育成本分担、性别权益保障及制度便利性的高度关注。<br>(2)	央视网报道体现政府宏观战略导向：政府以“人口长期均衡发展”为核心，通过完善生育补贴制度、推动政策与住房、教育、医疗等民生领域紧密衔接，致力于解决低生育率问题，侧重于通过政策调整与制度创新对提升生育意愿的顶层设计作用。<br>总而言之，未来政策的制定需要进一步与解决个体痛点问题形成协同，通过精准制定政策、落实政策、完善社会支持体系与相关保障制度等，实现提升社会生育意愿的最终目标。</p>
+</div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E5%8F%8A%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">数据获取及预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-number">2.</span> <span class="toc-text">文本特征提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA-SVM-%E7%9A%84%E6%96%87%E6%9C%AC%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">基于支持向量机 SVM 的文本情感分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%AF%8D%E4%BA%91%E5%9B%BE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">基于词云图可视化分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ELDA-%E4%B8%BB%E9%A2%98%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90"><span class="toc-number">5.</span> <span class="toc-text">基于LDA 主题模型分析</span></a></li></ol></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-04-19T14:38:24.143Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
